@@ -1,6 +1,6 @@
 const Product = require('../models/productsModel.js');
 
-function getProducts(req, res) {
+async function getProducts(req, res) {
           
     Product.find({})
         .then(products => {
@@ -9,7 +9,22 @@ function getProducts(req, res) {
         }).catch(err => res.status(500).send({err}))
 }
 
-function createProduct(req, res) {
+async function getProduct(req, res) {
+    try {
+        const { id } = req.params;
+        const product = await Product.findById(id);
+
+        if (!product) {
+            return res.status(404).send({ message: 'Product not found' });
+        }
+
+        res.status(200).send(product);
+    } catch (err) {
+        res.status(500).send({ error: 'Error fetching product', details: err.message });
+    }
+}
+
+async function createProduct(req, res) {
     const { name, category, requiresHelmet, requiresLifeJacket, capacity, durationPerSlot, isForKids } = req.body;
 
     // Create a new product instance with the data from the request body
@@ -29,15 +44,27 @@ function createProduct(req, res) {
         .catch(err => res.status(500).send({ message: 'Error creating product', err }));
 }
 
-function handleRental(req, res) {
-    // lógica para manejar los alquileres
-    res.send({ message: "Rental handled" });
+async function updateProduct(req, res) {
+    try {
+        const { id } = req.params;
+        const updated = await Product.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
+
+        if (!updated) {
+            return res.status(404).send({ message: 'Product not found' });
+        }
+
+        res.status(200).send(updated);
+    } catch (err) {
+        res.status(500).send({ error: 'Something went wrong', details: err.message });
+    }
 }
+
 
 module.exports = {
     getProducts,
+    getProduct,
     createProduct,
-    handleRental,
+    updateProduct,
 }
 
 
