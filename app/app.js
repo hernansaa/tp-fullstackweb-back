@@ -8,7 +8,7 @@ const express = require("express");
 const http = require("http");
 const bodyParser = require('body-parser');
 const cors = require("cors");
-const database = require('./config/database');  // adjust the path if needed
+const database = require('./config/database');
 
 // Connect to MongoDB Atlas
 database.connect();
@@ -18,7 +18,7 @@ const app = express();
 
 // Import app routes
 const indexRoutes = require("./routes/indexRoutes");
-const rentalRoutes = require("./routes/rentalRoutes");
+const productsRoutes = require("./routes/productsRoutes");
 
 // Set up middleware
 app.use(cors());            // Enable Cross-Origin Resource Sharing
@@ -27,9 +27,9 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 // Use imported routes
 app.use('/', indexRoutes);
-app.use('/api', rentalRoutes);
+app.use('/api', productsRoutes);
 
-// Choose port from environment or default to 5000
+// Choose port from environment or default to 5000 (Falta crear .env)
 const PORT = process.env.PORT || 5000;
 
 // Start the HTTP server
@@ -38,4 +38,4 @@ http.createServer(app).listen(PORT, () => {
 });
 
 
-module.exports = app 
+module.exports = app

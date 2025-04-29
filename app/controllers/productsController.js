@@ -29,9 +29,8 @@ function createProduct(req, res) {
         .catch(err => res.status(500).send({ message: 'Error creating product', err }));
 }
 
-
 function handleRental(req, res) {
-    // lógica para manejar el alquiler
+    // lógica para manejar los alquileres
     res.send({ message: "Rental handled" });
 }
 
@@ -46,7 +45,6 @@ module.exports = {
 // exports.handleRental = (req, res) => {
 //     const { productType, turns, paymentMethod } = req.body;
 
-//     // Example of business logic
 //     const pricePerTurn = 50;
 //     let total = pricePerTurn * turns;
 
@@ -55,21 +53,9 @@ module.exports = {
 //     }
 
 //     if (paymentMethod === 'cash') {
-//         // maybe add logic to require early payment
+//         // payment logic
 //     }
 
 //     res.json({ success: true, total });
 // };
 
-
-// exports.getProducts = (req, res) => {
-//     const products = [
-//         { id: 1, name: 'JetSki', requires: ['helmet', 'life jacket'] },
-//         { id: 2, name: 'Cuatriciclo', requires: ['helmet'] },
-//         { id: 3, name: 'Buceo', requires: [] },
-//         { id: 4, name: 'Tabla de surf - Niños', requires: [] },
-//         { id: 5, name: 'Tabla de surf - Adultos', requires: [] }
-//     ];
-
-//     res.json(products);
-// };

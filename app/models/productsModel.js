@@ -7,6 +7,7 @@ const productSchema = new mongoose.Schema({
   requiresLifeJacket: { type: Boolean, default: false },
   capacity: { type: Number, default: 1 },         // e.g. 1 or 2 persons
   durationPerSlot: { type: Number, default: 30 }, // Minutes
+  maxDurationConsecutive: { type: Number, default: 90 },     // Minutes
   isForKids: { type: Boolean, default: false }    // For surfboards
 });
 
