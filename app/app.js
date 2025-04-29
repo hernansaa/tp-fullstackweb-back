@@ -1,21 +1,24 @@
 // index.js — Main entry point of the server
 
 // Load environment variables (e.g., from .env file)
-// require("dotenv").config(); 
+// require("dotenv").config();
 
 // Import core modules
 const express = require("express");
-// const path = require('path');
 const http = require("http");
 const bodyParser = require('body-parser');
 const cors = require("cors");
+const database = require('./config/database');  // adjust the path if needed
+
+// Connect to MongoDB Atlas
+database.connect();
+
+// Create an Express app
+const app = express();
 
 // Import app routes
 const indexRoutes = require("./routes/indexRoutes");
 const rentalRoutes = require("./routes/rentalRoutes");
-
-// Create an Express app
-const app = express();
 
 // Set up middleware
 app.use(cors());            // Enable Cross-Origin Resource Sharing
@@ -31,8 +34,8 @@ const PORT = process.env.PORT || 5000;
 
 // Start the HTTP server
 http.createServer(app).listen(PORT, () => {
-    console.log(`🚀 Server is running at http://localhost:${PORT}`);
+    console.log(`(OK) Server is running at http://localhost:${PORT}`);
 });
 
 
-module.exports = app
+module.exports = app 
