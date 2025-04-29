@@ -11,7 +11,8 @@ const bodyParser = require('body-parser');
 const cors = require("cors");
 
 // Import app routes
-const routes = require("./routes");
+const indexRoutes = require("./routes/indexRoutes");
+const rentalRoutes = require("./routes/rentalRoutes");
 
 // Create an Express app
 const app = express();
@@ -22,12 +23,8 @@ app.use(express.json());    // Parse JSON request bodies
 app.use(bodyParser.urlencoded({extended: false}))
 
 // Use imported routes
-app.use("/", routes);       // Mount all routes at the root path
-
-// // Views
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname,'views', 'index.html'));
-// })
+app.use('/', indexRoutes);
+app.use('/api', rentalRoutes);
 
 // Choose port from environment or default to 5000
 const PORT = process.env.PORT || 5000;
