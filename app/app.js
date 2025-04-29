@@ -1,8 +1,3 @@
-// index.js — Main entry point of the server
-
-// Load environment variables (e.g., from .env file)
-// require("dotenv").config();
-
 // Import core modules
 const express = require("express");
 const http = require("http");
