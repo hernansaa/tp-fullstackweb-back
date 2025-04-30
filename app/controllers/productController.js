@@ -78,13 +78,37 @@ async function getProductTimeSlots(req, res) {
   }
 
 
+
+  async function getProductsWithTimeSlots(req, res) {
+    try {
+      const products = await Product.find({});
+      
+      const productsWithSlots = await Promise.all(
+        products.map(async (product) => {
+          const timeSlots = await TimeSlot.find({ product: product._id }).sort('startTime');
+          return {
+            ...product.toObject(),
+            timeSlots,
+          };
+        })
+      );
+  
+      res.status(200).json({ products: productsWithSlots });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+  
+
+
 module.exports = {
     getProducts,
     getProduct,
     createProduct,
     updateProduct,
     getProductTimeSlots,
-}
+    getProductsWithTimeSlots,
+};
 
 
 

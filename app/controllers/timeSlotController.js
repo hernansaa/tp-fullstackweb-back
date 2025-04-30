@@ -1,9 +1,9 @@
-const models = require('../models/timeSlotModels.js');
+const TimeSlot = require('../models/timeSlotModels.js');
 
 
 function getTimeSlots(req, res) {
     
-    models.TimeSlot.find({})
+    TimeSlot.find({})
         .then(TimeSlots => {
             if(TimeSlots.length) return res.status(200).send({TimeSlots})
             return res.status(204).send({message: 'No Content'});
@@ -13,7 +13,7 @@ function getTimeSlots(req, res) {
 
 async function createTimeSlot(req, res) {
     try {
-      const newTimeSlot = new models.TimeSlot(req.body);
+      const newTimeSlot = new TimeSlot(req.body);
       const savedSlot = await newTimeSlot.save();
       res.status(201).json(savedSlot);
     } catch (err) {
