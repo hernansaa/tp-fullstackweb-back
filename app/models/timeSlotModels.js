@@ -13,6 +13,4 @@ TimeSlotSchema.index({ product: 1, startTime: 1 }, { unique: true }); // prevent
 
 const TimeSlot = mongoose.model('TimeSlot', TimeSlotSchema);
 
-module.exports = {
-  TimeSlot
-}
+module.exports = TimeSlot;

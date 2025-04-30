@@ -1,4 +1,5 @@
 const Product = require('../models/productsModel.js');
+const TimeSlot = require('../models/timeSlotModels.js')
 
 async function getProducts(req, res) {
           
@@ -11,8 +12,8 @@ async function getProducts(req, res) {
 
 async function getProduct(req, res) {
     try {
-        const { id } = req.params;
-        const product = await Product.findById(id);
+        const { productId } = req.params;
+        const product = await Product.findById(productId);
 
         if (!product) {
             return res.status(404).send({ message: 'Product not found' });
@@ -25,7 +26,7 @@ async function getProduct(req, res) {
 }
 
 async function createProduct(req, res) {
-    const { name, category, requiresHelmet, requiresLifeJacket, capacity, durationPerSlot, isForKids } = req.body;
+    const { name, category, requiresHelmet, requiresLifeJacket, capacity, durationPerSlot, isForKproductIDs } = req.body;
 
     // Create a new product instance with the data from the request body
     const newProduct = new Product({
@@ -35,7 +36,7 @@ async function createProduct(req, res) {
         requiresLifeJacket,
         capacity,
         durationPerSlot,
-        isForKids
+        isForKproductIDs
     });
 
     // Save the product to the database
@@ -46,8 +47,8 @@ async function createProduct(req, res) {
 
 async function updateProduct(req, res) {
     try {
-        const { id } = req.params;
-        const updated = await Product.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
+        const { productID } = req.params;
+        const updated = await Product.findByproductIDAndUpdate(productID, req.body, { new: true, runValproductIDators: true });
 
         if (!updated) {
             return res.status(404).send({ message: 'Product not found' });
@@ -60,11 +61,29 @@ async function updateProduct(req, res) {
 }
 
 
+async function getProductTimeSlots(req, res) {
+    const { productId } = req.params;
+  
+    try {
+      const timeslots = await TimeSlot.find({ product: productId }).sort('startTime');
+      
+      if (timeslots.length === 0) {
+        return res.status(204).json({ message: 'No timeslots found for this product.' });
+      }
+  
+      res.status(200).json({ timeslots });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
+
 module.exports = {
     getProducts,
     getProduct,
     createProduct,
     updateProduct,
+    getProductTimeSlots,
 }
 
 
