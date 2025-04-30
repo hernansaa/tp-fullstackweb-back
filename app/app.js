@@ -13,16 +13,19 @@ const app = express();
 
 // Import app routes
 const indexRoutes = require("./routes/indexRoutes");
-const productsRoutes = require("./routes/productsRoutes");
+const productRoutes = require("./routes/productRoutes");
+const timeSlotRoutes = require("./routes/timeSlotRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
 
 // Set up middleware
 app.use(cors());            // Enable Cross-Origin Resource Sharing
 app.use(express.json());    // Parse JSON request bodies
-app.use(bodyParser.urlencoded({extended: false}))
 
 // Use imported routes
 app.use('/', indexRoutes);
-app.use('/api', productsRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/timeslots', timeSlotRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 // Choose port from environment or default to 5000 (Falta crear .env)
 const PORT = process.env.PORT || 5000;
