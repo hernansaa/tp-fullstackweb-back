@@ -1,5 +1,5 @@
 const Product = require('../models/productsModel.js');
-const TimeSlot = require('../models/timeSlotModels.js')
+const { TimeSlot } = require('../models/timeSlotModels.js')
 
 async function getProducts(req, res) {
           

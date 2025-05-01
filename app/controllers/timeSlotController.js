@@ -1,4 +1,4 @@
-const TimeSlot = require('../models/timeSlotModels.js');
+const { TimeSlot } = require('../models/timeSlotModels.js');
 
 
 function getTimeSlots(req, res) {
