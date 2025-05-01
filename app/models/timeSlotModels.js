@@ -5,7 +5,7 @@ const TimeSlotSchema = new mongoose.Schema({
   startTime: { type: String, required: true, match: /^([01]\d|2[0-3]):[0-5]\d$/ }, // e.g. "10:30"
   endTime: { type: String, required: true, match: /^([01]\d|2[0-3]):[0-5]\d$/ },
   // product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-  isBooked: { type: Boolean, default: false },
+  // isBooked: { type: Boolean, default: false },
   booking: { type: mongoose.Schema.Types.ObjectId, ref: 'Booking' }, // optional: linked booking
 });
 
