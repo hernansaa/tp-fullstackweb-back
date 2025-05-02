@@ -1,14 +1,14 @@
 const { TimeSlot } = require('../models/timeSlotModels.js');
 
 
-function getTimeSlots(req, res) {
-    
-    TimeSlot.find({})
-        .then(TimeSlots => {
-            if(TimeSlots.length) return res.status(200).send({TimeSlots})
-            return res.status(204).send({message: 'No Content'});
-        }).catch(err => res.status(500).send({err}))
-
+async function getTimeSlots(req, res) {
+  TimeSlot.find({})
+    .sort({ startTime: 1 }) // sort by startTime ascending
+    .then(TimeSlots => {
+      if (TimeSlots.length) return res.status(200).send({ TimeSlots });
+      return res.status(204).send({ message: 'No Content' });
+    })
+    .catch(err => res.status(500).send({ err }));
 }
 
 async function createTimeSlot(req, res) {

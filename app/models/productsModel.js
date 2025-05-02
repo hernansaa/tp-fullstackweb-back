@@ -11,7 +11,8 @@ const productSchema = new mongoose.Schema({
   minReserveAnticipation: { type: Number, default: 2 },       // Hours
   maxReserveAnticipation: { type: Number, default: 48 },      // Hours
   isForKids: { type: Boolean, default: false },               // For surfboards
-  inventaryQuantity: { type: Number, default: 5 }
+  inventaryQuantity: { type: Number, default: 5 },
+  price: { type: Number, default: 0 }
 });
 
 const Product = mongoose.model('Product', productSchema);

@@ -5,11 +5,10 @@ const productController = require('../controllers/productController');
 router.get('/', productController.getProducts);
 // router.get('/', productController.getProductsWithTimeSlots);
 router.get('/:productId', productController.getProduct);
+router.put('/:productId/update', productController.updateProduct);
+router.delete('/:productId/delete', productController.deleteProduct);
 router.get('/:productId/timeslots', productController.getProductTimeSlots);
 
-
 router.post('/create', productController.createProduct);
-// router.put('/products/:id/update', rentalController.updateProduct);
-
 
 module.exports = router;
