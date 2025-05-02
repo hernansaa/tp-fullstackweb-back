@@ -17,6 +17,7 @@ const BookingSchema = new mongoose.Schema({
 
 
 // Pre-save hook to calculate the total
+// Pre-save hook to calculate the total with a discount
 BookingSchema.pre('save', async function (next) {
   try {
     let total = 0;
@@ -29,6 +30,11 @@ BookingSchema.pre('save', async function (next) {
       }
     }
 
+    // Apply a 10% discount if there is more than one product rented
+    if (this.rentals.length > 1) {
+      total *= 0.9; // Apply 10% discount
+    }
+
     this.total = total;
 
     next();
@@ -36,7 +42,6 @@ BookingSchema.pre('save', async function (next) {
     next(err);
   }
 });
-
 
 const Booking = mongoose.model('Booking', BookingSchema);
 
