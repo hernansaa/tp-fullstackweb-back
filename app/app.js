@@ -22,10 +22,10 @@ app.use(cors());            // Enable Cross-Origin Resource Sharing
 app.use(express.json());    // Parse JSON request bodies
 
 // Use imported routes
-app.use('/', indexRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/timeslots', timeSlotRoutes);
-app.use('/api/bookings', bookingRoutes);
+app.use('/api/v1/', indexRoutes);
+app.use('/api/v1/products', productRoutes);
+app.use('/api/v1/timeslots', timeSlotRoutes);
+app.use('/api/v1/bookings', bookingRoutes);
 
 // Choose port from environment or default to 5000 (Falta crear .env)
 const PORT = process.env.PORT || 5000;
