@@ -1,10 +1,15 @@
-# Beach Product Rental Management System (Backend)
+# Beach Product Rental Management System API (Backend)
 
 ## Overview
 
 This system is designed to manage the rental of beach products at a parador located in the Caribbean. Customers can rent a variety of products such as **JetSky**, **Cuatriciclos**, **Diving Equipment**, and **Surfboards** (for both kids and adults). 
 
 The system handles the entire rental process including product availability, rental duration, security requirements, payment processing, and discounts.
+
+
+## 📚 API Documentation
+You can find the full API documentation here: [View API Docs](https://documenter.getpostman.com/view/11325396/2sB2j4gX6N)
+
 
 ## Products Available for Rental:
 
