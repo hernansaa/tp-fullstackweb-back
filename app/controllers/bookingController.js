@@ -57,15 +57,15 @@ async function createBooking(req, res) {
             });
         }
 
-        const booking = new models.Booking({
-            product,
-            customerName,
-            date,
-            timeSlots,
-            paymentMethod,
-            isPaid
-        });
-
+        // const booking = new models.Booking({
+        //     product,
+        //     customerName,
+        //     date,
+        //     timeSlots,
+        //     paymentMethod,
+        //     isPaid
+        // });
+        const booking = new models.Booking(req.body);
         await booking.save();
         res.status(201).json(booking);
     } catch (err) {
